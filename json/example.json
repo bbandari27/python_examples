@@ -1,0 +1,266 @@
+{
+    "isLastPage": true,
+    "limit": 25,
+    "size": 8,
+    "start": 0,
+    "values": [
+        {
+            "accessKeys": [],
+            "groups": [],
+            "id": 753,
+            "matcher": {
+                "active": true,
+                "displayId": "main",
+                "id": "main",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "fast-forward-only",
+            "users": []
+        },
+        {
+            "accessKeys": [],
+            "groups": [],
+            "id": 755,
+            "matcher": {
+                "active": true,
+                "displayId": "main",
+                "id": "main",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "no-deletes",
+            "users": []
+        },
+        {
+            "accessKeys": [],
+            "groups": [
+                "Dev Ops"
+            ],
+            "id": 754,
+            "matcher": {
+                "active": true,
+                "displayId": "main",
+                "id": "main",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "pull-request-only",
+            "users": [
+                {
+                    "active": true,
+                    "displayName": "_svcGIT",
+                    "emailAddress": "exampledevops@gmail.com",
+                    "id": 2387,
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://git.califlower.com/users/_svcgit"
+                            }
+                        ]
+                    },
+                    "name": "_svcGit",
+                    "slug": "_svcgit",
+                    "type": "NORMAL"
+                }
+            ]
+        },
+        {
+            "accessKeys": [],
+            "groups": [
+                "SRE",
+                "Dev Ops"
+            ],
+            "id": 756,
+            "matcher": {
+                "active": true,
+                "displayId": "main",
+                "id": "main",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "read-only",
+            "users": [
+                {
+                    "active": true,
+                    "displayName": "Phillip Glover",
+                    "emailAddress": "pglover@califlower.com",
+                    "id": 3402,
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://git.califlower.com/users/pglover"
+                            }
+                        ]
+                    },
+                    "name": "pglover",
+                    "slug": "pglover",
+                    "type": "NORMAL"
+                },
+                {
+                    "active": true,
+                    "displayName": "_svcGIT",
+                    "emailAddress": "exampledevops@gmail.com",
+                    "id": 2387,
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://git.califlower.com/users/_svcgit"
+                            }
+                        ]
+                    },
+                    "name": "_svcGit",
+                    "slug": "_svcgit",
+                    "type": "NORMAL"
+                }
+            ]
+        },
+        {
+            "accessKeys": [],
+            "groups": [
+                "Dev Ops"
+            ],
+            "id": 906,
+            "matcher": {
+                "active": true,
+                "displayId": "master",
+                "id": "master",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "fast-forward-only",
+            "users": []
+        },
+        {
+            "accessKeys": [],
+            "groups": [
+                "Dev Ops"
+            ],
+            "id": 907,
+            "matcher": {
+                "active": true,
+                "displayId": "master",
+                "id": "master",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "no-deletes",
+            "users": []
+        },
+        {
+            "accessKeys": [],
+            "groups": [
+                "Dev Ops"
+            ],
+            "id": 905,
+            "matcher": {
+                "active": true,
+                "displayId": "master",
+                "id": "master",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "pull-request-only",
+            "users": [
+                {
+                    "active": true,
+                    "displayName": "_svcGIT",
+                    "emailAddress": "exampledevops@gmail.com",
+                    "id": 2387,
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://git.califlower.com/users/_svcgit"
+                            }
+                        ]
+                    },
+                    "name": "_svcGit",
+                    "slug": "_svcgit",
+                    "type": "NORMAL"
+                }
+            ]
+        },
+        {
+            "accessKeys": [],
+            "groups": [
+                "Dev Ops",
+                "SRE"
+            ],
+            "id": 432,
+            "matcher": {
+                "active": true,
+                "displayId": "master",
+                "id": "master",
+                "type": {
+                    "id": "BRANCH",
+                    "name": "Branch"
+                }
+            },
+            "scope": {
+                "resourceId": 213,
+                "type": "PROJECT"
+            },
+            "type": "read-only",
+            "users": [
+                {
+                    "active": true,
+                    "displayName": "_svcGIT",
+                    "emailAddress": "exampledevops@gmail.com",
+                    "id": 2387,
+                    "links": {
+                        "self": [
+                            {
+                                "href": "https://git.califlower.com/users/_svcgit"
+                            }
+                        ]
+                    },
+                    "name": "_svcGit",
+                    "slug": "_svcgit",
+                    "type": "NORMAL"
+                }
+            ]
+        }
+    ]
+}
