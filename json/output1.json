@@ -1,0 +1,60 @@
+{
+    'key': 'TES', 
+    'name': 'testing_project', 
+    'description': 'will archive this project for testing purpose', 
+    'public': True, 
+    'type': 'NORMAL', 
+    'links': {
+        'self': [
+            {
+                'href': 'https://git.cauliflower.com/projects/TES'
+            }
+        ]
+    }
+}
+
+{
+    'slug': 'testing_repo', 
+    'id': 4458, 
+    'name': 'testing_repo', 
+    'description': 'testing repo for archiving', 
+    'scmId': 'git', 
+    'state': 'AVAILABLE', 
+    'statusMessage': 'Available', 
+    'forkable': True, 
+    'project': 
+        {
+            'key': 'TES', 
+            'id': 1185, 
+            'name': 'testing_project', 
+            'description': 'will archive this project for testing purpose', 
+            'public': True, 
+            'type': 'NORMAL', 
+            'links': 
+            {
+                'self': [
+                    {
+                        'href': 'https://git.cauliflower.com/projects/TES'
+                    }
+                ]
+            }
+        }, 
+    
+    'public': False, 
+    'archived': False, 
+    'links': {
+        'clone': [
+            {
+                'name': 'http'
+            }, 
+            {
+                'name': 'ssh'
+            }
+        ], 
+        'self': [
+            {
+                'href': 'https://git.cauliflower.com/projects/TES/repos/testing_repo/browse'
+            }
+        ]
+    }
+}
