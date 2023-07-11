@@ -1,0 +1,15 @@
+Group Detected	Group to be added
+DBA	SSO_Blueprint_Bitbucket_DBA
+Database Administration	SSO_Blueprint_Bitbucket_DBA
+Devopsdb	SSO_Blueprint_Bitbucket_DBA
+SRE	SSO_Blueprint_Bitbucket_SRE
+SRE Team	SSO_Blueprint_Bitbucket_SRE
+SRE Admins	SSO_Blueprint_Bitbucket_SRE
+Dev Ops	SSO_Blueprint_Bitbucket_Devops
+Information Security	SSO_Blueprint_Bitbucket_Infosec
+Corporate Infrastructure	SSO_Blueprint_Bitbucket_Corpit
+N/A	SSO_Blueprint_Bitbucket_Infosec_admin
+Data Platform	SSO_Blueprint_Bitbucket_Dataplatform
+Engineering	SSO_Blueprint_Bitbucket_engineering
+Engineering Lead	SSO_Blueprint_Bitbucket_Engineering_Lead
+	
