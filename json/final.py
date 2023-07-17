@@ -1,3 +1,6 @@
+# code to set the branch permissions for bitbucket projects and repositpories
+# you need input.csv file on the same directory from where you are runing this code. 
+
 import requests
 import json
 import pandas as pd
@@ -7,8 +10,8 @@ from atlassian import Bitbucket
 import csv
 
 # Enter your Bitbucket credentials
-username = 'user1'
-password = 'Crossfit0110!'
+username = input("Enter your username: ")
+password = getpass("Enter your Password: ")
 base_url = "https://git.cauliflower.com"
 
 #defining class for branch permissions
@@ -67,30 +70,27 @@ class BranchPermissionsAPI:
 bitbucket = Bitbucket(base_url, username, password)
 
 # Get projects using atlassian module
-#projects = bitbucket.project_list()
-projects = ["TES"]
+# projects = bitbucket.project_list()
+projects = [ 'TES' ]
 
 # Iterate over projects
 for project in projects:
-    #project_key = project["key"]
+    # project_key = project["key"]
     project_key = project
     #Get project permissions
     branch_permissions_api = BranchPermissionsAPI(base_url)
     project_branch_permissions = branch_permissions_api.get_project_branch_permissions(project_key)
     if project_branch_permissions is not None:
-        print(" *************** Project {project_key} permissions *************** ".format(project_key=project_key))
         json_response_str = json.dumps(project_branch_permissions, sort_keys=True, indent=4, separators=(",", ": "))
         # parse and extract the json response string 
         json_response = json.loads(json_response_str)
         values = json_response["values"]
-        print (" *************** Project {project_key} scanned *************** ".format(project_key=project_key))
-
+        print (" ************************ Project {project_key} scanned ************************ ".format(project_key=project_key))
         # Load CSV data
         csv_data = []
         with open('./input.csv', 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
             csv_data = list(csv_reader)
-
         # Remove specified fields from JSON data
         for item in values:
             item.pop('accessKeys', None)
@@ -98,24 +98,24 @@ for project in projects:
             item['matcher'].pop('active', None)
             item.pop('scope', None)
             item['users'] = [user['name'] for user in item['users']]
-
             # Extract existing groups from JSON
             existing_groups = item['groups']
-
             # Iterate over CSV rows
             for csv_row in csv_data:
                 csv_groups = [group.strip() for group in csv_row[0].split(',')]
                 csv_value = csv_row[1].strip()
                 for group in csv_groups:
-                    if group in existing_groups:
+                    if group in existing_groups and csv_value not in item['groups']:
+                        print (" Branch:{branch} / Permission: {permission} : Found {group}, adding {csv_value} ".format(branch=item['matcher']['id'], permission=item['type'], group=group, csv_value=csv_value))
                         item['groups'].append(csv_value)
-            
-            payload = json.dumps(item)
-
-            set_project_branch_permissions = branch_permissions_api.set_project_branch_permissions(project_key, payload)
-            json_res_str = json.dumps(set_project_branch_permissions, sort_keys=True, indent=4, separators=(",", ": "))
+                        payload = json.dumps(item)
+                        #set new permisisons on project level as we found old group
+                        set_project_branch_permissions = branch_permissions_api.set_project_branch_permissions(project_key, payload)
+                        json_res_str = json.dumps(set_project_branch_permissions, sort_keys=True, indent=4, separators=(",", ": "))
+                    elif group in existing_groups and csv_value in item['groups']:
+                        print (" Branch: {branch} / Permission: {permission} : Found {group} and {csv_value}, Nothing to do ".format(branch=item['matcher']['id'], permission=item['type'], group=group, csv_value=csv_value))
     else: 
-        print("no branch permisisons for project {project_key}: project_branch_permissions.status_code".format(project_key=project_key))
+        print("Couldn't get branch permisisons for project {project_key}: project_branch_permissions.status_code".format(project_key=project_key))
 
     # Get repositories in the project
     repositories = bitbucket.repo_list(project_key)
@@ -129,7 +129,6 @@ for project in projects:
             branch_permissions_api = BranchPermissionsAPI(base_url)
             repository_branch_permissions = branch_permissions_api.get_repository_branch_permissions(project_key, repository_slug)
             if repository_branch_permissions is not None:
-                print(" *************** Project {project_key}/{repository_slug} permissions *************** ".format(project_key=project_key, repository_slug=repository_slug))
                 json_response_str = json.dumps(repository_branch_permissions, sort_keys=True, indent=4, separators=(",", ": "))
                 # parse and extract the json response string 
                 json_response = json.loads(json_response_str)
@@ -140,7 +139,6 @@ for project in projects:
                 with open('./input.csv', 'r') as csv_file:
                     csv_reader = csv.reader(csv_file)
                     csv_data = list(csv_reader)
-
                 # Remove specified fields from JSON data
                 for item in values:
                     item.pop('accessKeys', None)
@@ -148,23 +146,23 @@ for project in projects:
                     item['matcher'].pop('active', None)
                     item.pop('scope', None)
                     item['users'] = [user['name'] for user in item['users']]
-
                     # Extract existing groups from JSON
                     existing_groups = item['groups']
-
                     # Iterate over CSV rows
                     for csv_row in csv_data:
                         csv_groups = [group.strip() for group in csv_row[0].split(',')]
                         csv_value = csv_row[1].strip()
                         for group in csv_groups:
-                            if group in existing_groups:
+                            if group in existing_groups and csv_value not in item['groups']:
+                                print (" Branch: {branch} / Permission: {permission} : Found {group} , adding {csv_value} ".format(branch=item['matcher']['id'], permission=item['type'], group=group, csv_value=csv_value))
                                 item['groups'].append(csv_value)
-                    
-                    payload = json.dumps(item)
-
-                    set_repo_branch_permissions = branch_permissions_api.set_repo_branch_permissions(project_key, repository_slug, payload)
-                    json_res_str = json.dumps(set_repo_branch_permissions, sort_keys=True, indent=4, separators=(",", ": "))
+                                payload = json.dumps(item)
+                                #set new permisisons on repository level as we found old group
+                                set_repo_branch_permissions = branch_permissions_api.set_repo_branch_permissions(project_key, repository_slug, payload)
+                                json_res_str = json.dumps(set_repo_branch_permissions, sort_keys=True, indent=4, separators=(",", ": "))
+                            elif group in existing_groups and csv_value in item['groups']:
+                                print (" Branch: {branch} / Permission: {permission} : Found {group} and {csv_value}, Nothing to do ".format(branch=item['matcher']['id'], permission=item['type'], group=group, csv_value=csv_value))
             else: 
-                print("no branch permisisons for Project/Respository {project_key}/{repository_slug}: repository_branch_permissions.status_code".format(project_key=project_key, repository_slug=repository_slug))
+                print("Couldn't get branch permisisons for Project/Respository {project_key}/{repository_slug}: repository_branch_permissions.status_code".format(project_key=project_key, repository_slug=repository_slug))
         else:
             print("Project/Respository {project_key}/{repository_slug}: is archived".format(project_key=project_key, repository_slug=repository_slug))
